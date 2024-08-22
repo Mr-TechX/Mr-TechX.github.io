@@ -1,4 +1,4 @@
 # PORTAFOLIO WEB
 [EMTRAR](https://mr-techx-github.io)
 ---
-<img heigt="100" src="https://raw.githubusercontent.com/Mr-TechX/Mr-TechX.github.io/main/images/caratula.png>
+[![TechX Twitter](https://pbs.twimg.com/profile_banners/1370653756468166657/1626578835/1500x500)](https://twitter.com/Mr_TechX)
