@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KW a Amp - Ulises LC Volt Calc</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="circuit-bg" aria-hidden="true">
+    <div class="trace-layer trace-layer-a"></div>
+    <div class="trace-layer trace-layer-b"></div>
+    <div class="pulse pulse-one"></div>
+    <div class="pulse pulse-two"></div>
+    <div class="pulse pulse-three"></div>
+  </div>
+
+  <main class="interface">
+    <section class="calculator" aria-labelledby="page-title">
+      <h1 id="page-title">KW -&gt; Amp</h1>
+
+      <form class="calc-form" id="kwAmpForm" novalidate>
+        <label class="field">
+          <span>KiloWatts (KW)</span>
+          <input id="kwInput" name="kw" type="number" min="0" step="any" inputmode="decimal" placeholder="Ej. 5.5">
+        </label>
+
+        <label class="field">
+          <span>Volts (V)</span>
+          <input id="voltsInput" name="volts" type="number" min="0" step="any" inputmode="decimal" placeholder="Ej. 220">
+        </label>
+
+        <label class="field">
+          <span>Tipo de corriente</span>
+          <select id="typeSelect" name="type">
+            <option value="">Selecciona un tipo</option>
+            <option value="continua">Continua</option>
+            <option value="monofasica">Monofasica</option>
+            <option value="monofasica220">Monofisica 220v</option>
+            <option value="bifasica">Bifasica (L-L-N)</option>
+            <option value="trifasica">Trifasica</option>
+          </select>
+        </label>
+
+        <label class="field result-field">
+          <span>Resultado en Amperes (A)</span>
+          <input id="resultInput" type="text" readonly placeholder="Resultado">
+        </label>
+
+        <p class="message" id="formMessage" aria-live="polite">Los campos deben estar llenos.</p>
+
+        <button class="submit-button" id="submitButton" type="submit" disabled>Enviar</button>
+        <a class="back-link" href="../../index.html">Volver</a>
+      </form>
+    </section>
+
+    <aside class="fp-note" aria-label="Nota sobre FP">
+      <strong>FP</strong> significa Factor de Potencia. Indica que tan eficientemente un motor usa la energia electrica; en maquinas industriales se usa 0.8 como valor aproximado.
+    </aside>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>

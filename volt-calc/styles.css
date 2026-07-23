@@ -1,0 +1,352 @@
+:root {
+  --black: #030303;
+  --panel: rgba(10, 0, 2, 0.76);
+  --red: #ff1f3d;
+  --red-hot: #ff0033;
+  --red-dark: #6f0015;
+  --text: #fff6f8;
+  --muted: #c66876;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--black);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.circuit-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 0, 38, 0.18), transparent 22%),
+    radial-gradient(circle at 86% 78%, rgba(140, 0, 22, 0.22), transparent 24%),
+    linear-gradient(135deg, #050505 0%, #080001 48%, #010101 100%);
+}
+
+.circuit-bg::before,
+.circuit-bg::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(90deg, transparent 0 48%, rgba(255, 32, 61, 0.18) 48% 52%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(255, 32, 61, 0.12) 48% 52%, transparent 52% 100%);
+  background-size: 126px 126px;
+  filter: drop-shadow(0 0 9px rgba(255, 0, 51, 0.42));
+  animation: board-drift 22s linear infinite;
+}
+
+.circuit-bg::after {
+  opacity: 0.55;
+  transform: rotate(45deg) scale(1.2);
+  animation-duration: 32s;
+  animation-direction: reverse;
+}
+
+.trace-layer {
+  position: absolute;
+  inset: -12%;
+  opacity: 0.7;
+  background:
+    linear-gradient(90deg, transparent 8%, var(--red-dark) 8% 9%, transparent 9% 21%, var(--red) 21% 22%, transparent 22% 100%),
+    linear-gradient(0deg, transparent 14%, var(--red-dark) 14% 15%, transparent 15% 39%, var(--red) 39% 40%, transparent 40% 100%);
+  background-size: 250px 190px;
+  -webkit-mask-image: radial-gradient(circle at center, black 28%, transparent 78%);
+  mask-image: radial-gradient(circle at center, black 28%, transparent 78%);
+  filter: drop-shadow(0 0 12px rgba(255, 0, 51, 0.5));
+}
+
+.trace-layer-a {
+  animation: layer-slide-a 16s linear infinite;
+}
+
+.trace-layer-b {
+  transform: rotate(-18deg) scale(1.35);
+  opacity: 0.34;
+  animation: layer-slide-b 24s linear infinite;
+}
+
+.pulse {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--red-hot);
+  box-shadow:
+    0 0 14px rgba(255, 0, 51, 0.95),
+    0 0 34px rgba(255, 0, 51, 0.72),
+    0 0 64px rgba(255, 0, 51, 0.36);
+}
+
+.pulse-one {
+  top: 22%;
+  left: -3%;
+  animation: pulse-path-one 7s linear infinite;
+}
+
+.pulse-two {
+  top: 72%;
+  left: 105%;
+  animation: pulse-path-two 9s linear infinite 1.5s;
+}
+
+.pulse-three {
+  top: -4%;
+  left: 68%;
+  animation: pulse-path-three 8s linear infinite 0.5s;
+}
+
+.interface {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 6vh, 62px);
+  padding: 28px 16px;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.68) 68%);
+}
+
+h1 {
+  margin: 0;
+  width: min(92vw, 980px);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 10px rgba(255, 0, 51, 0.9),
+    0 0 30px rgba(255, 0, 51, 0.46),
+    0 2px 0 #2d0009;
+}
+
+.actions {
+  width: min(80vw, 980px);
+  min-height: 50vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(18px, 4vh, 34px);
+}
+
+.calc-button {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 58, 88, 0.78);
+  clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+  color: var(--text);
+  background:
+    linear-gradient(135deg, rgba(255, 0, 51, 0.18), rgba(0, 0, 0, 0.75) 42%, rgba(255, 0, 51, 0.22)),
+    var(--panel);
+  box-shadow:
+    inset 0 0 24px rgba(255, 0, 51, 0.26),
+    0 0 0 1px rgba(255, 0, 51, 0.26),
+    0 20px 55px rgba(0, 0, 0, 0.55),
+    0 0 32px rgba(255, 0, 51, 0.2);
+  cursor: pointer;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 3.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.calc-button::before,
+.calc-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.calc-button::before {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent),
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(255, 0, 51, 0.12) 22px 23px);
+  transform: translateX(-115%);
+  transition: transform 480ms ease;
+}
+
+.calc-button::after {
+  inset: 10px;
+  border: 1px solid rgba(255, 34, 68, 0.38);
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+}
+
+.calc-button span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  max-width: 92%;
+  text-shadow:
+    0 0 10px rgba(255, 0, 51, 0.9),
+    0 0 28px rgba(255, 0, 51, 0.65);
+}
+
+.calc-button:hover,
+.calc-button:focus-visible {
+  outline: none;
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(255, 118, 136, 0.98);
+  box-shadow:
+    inset 0 0 34px rgba(255, 0, 51, 0.38),
+    0 0 0 1px rgba(255, 0, 51, 0.5),
+    0 24px 66px rgba(0, 0, 0, 0.64),
+    0 0 48px rgba(255, 0, 51, 0.44);
+}
+
+.calc-button:hover::before,
+.calc-button:focus-visible::before {
+  transform: translateX(115%);
+}
+
+.calc-button:active {
+  transform: translateY(0) scale(0.99);
+}
+
+@keyframes board-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(126px, 126px, 0);
+  }
+}
+
+@keyframes layer-slide-a {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(250px, 190px, 0);
+  }
+}
+
+@keyframes layer-slide-b {
+  from {
+    transform: rotate(-18deg) scale(1.35) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: rotate(-18deg) scale(1.35) translate3d(-250px, 190px, 0);
+  }
+}
+
+@keyframes pulse-path-one {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+
+  12%,
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(108vw, 28vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-path-two {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+
+  12%,
+  76% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-112vw, -22vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-path-three {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+
+  15%,
+  72% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-18vw, 112vh, 0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .interface {
+    justify-content: flex-start;
+    padding-top: 54px;
+  }
+
+  .actions {
+    width: min(88vw, 520px);
+    min-height: 62vh;
+  }
+
+  h1 {
+    font-size: 2.45rem;
+  }
+
+  .calc-button {
+    font-size: 1.85rem;
+    min-height: 132px;
+    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1024px) {
+  h1 {
+    font-size: 3.35rem;
+  }
+
+  .calc-button {
+    font-size: 2.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

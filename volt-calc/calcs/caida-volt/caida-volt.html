@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caida de Voltaje - Ulises LC Volt Calc</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="circuit-bg" aria-hidden="true">
+    <div class="trace-layer trace-layer-a"></div>
+    <div class="trace-layer trace-layer-b"></div>
+    <div class="pulse pulse-one"></div>
+    <div class="pulse pulse-two"></div>
+    <div class="pulse pulse-three"></div>
+  </div>
+
+  <main class="interface">
+    <section class="calculator" aria-labelledby="page-title">
+      <h1 id="page-title">Caida de Voltaje</h1>
+
+      <form class="calc-form" id="voltageDropForm" novalidate>
+        <label class="field">
+          <span>Distancia (m)</span>
+          <input id="distanceInput" name="distancia" type="number" min="0" step="any" inputmode="decimal" placeholder="Ej. 35">
+        </label>
+
+        <label class="field">
+          <span>Amperaje (A)</span>
+          <input id="amperageInput" name="amperaje" type="number" min="0" step="any" inputmode="decimal" placeholder="Ej. 18">
+        </label>
+
+        <label class="field">
+          <span>Tipo de sistema</span>
+          <select id="systemSelect" name="sistema">
+            <option value="">Selecciona un sistema</option>
+            <option value="monofasica">Monofasica - FP 0.8</option>
+            <option value="monofasica220">Monofasica 220v - FP 0.8</option>
+            <option value="bifasica">Bifasica (L-L-N) - FP 0.8</option>
+            <option value="trifasica">Trifasica - FP 0.8</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Calibre de cable</span>
+          <select id="gaugeSelect" name="calibre">
+            <option value="">Selecciona un calibre</option>
+            <option value="cal3_0">3_0</option>
+            <option value="cal2_0">2_0</option>
+            <option value="cal1_0">1_0</option>
+            <option value="cal3">3</option>
+            <option value="cal4">4</option>
+            <option value="cal6">6</option>
+            <option value="cal8">8</option>
+            <option value="cal10">10</option>
+            <option value="cal12">12</option>
+            <option value="cal14">14</option>
+            <option value="cal16">16</option>
+          </select>
+        </label>
+
+        <label class="field result-field">
+          <span>Caida de voltaje (V)</span>
+          <input id="resultInput" type="text" readonly placeholder="Resultado">
+        </label>
+
+        <p class="message" id="formMessage" aria-live="polite">Los campos deben estar llenos.</p>
+
+        <button class="submit-button" id="submitButton" type="submit" disabled>Enviar</button>
+        <a class="back-link" href="../../index.html">Volver</a>
+      </form>
+    </section>
+
+    <aside class="fp-note" aria-label="Nota sobre FP">
+      <strong>FP</strong> significa Factor de Potencia. Indica que tan eficientemente un motor usa la energia electrica; en maquinas industriales se usa 0.8 como valor aproximado.
+    </aside>
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
