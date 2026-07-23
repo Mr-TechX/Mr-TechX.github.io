@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ulises LC - Volt Calc</title>
+  <meta name="theme-color" content="#101820">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/ico" href="icn.png">
 </head>
 <body>
   <div class="circuit-bg" aria-hidden="true">
@@ -30,5 +32,10 @@
   </main>
 
   <script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
+    }
+  </script>
 </body>
 </html>
