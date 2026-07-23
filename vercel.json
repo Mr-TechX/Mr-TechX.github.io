@@ -1,0 +1,61 @@
+{
+  "redirects": [
+    {
+      "source": "/volt-calc",
+      "destination": "/volt-calc/",
+      "permanent": true
+    },
+    {
+      "source": "/volt-calc/kw-amp",
+      "destination": "/volt-calc/kw-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/volt-calc/caida-volt",
+      "destination": "/volt-calc/caida-volt/",
+      "permanent": true
+    },
+    {
+      "source": "/calcs/kw-amp/kw-amp.html",
+      "destination": "/volt-calc/kw-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/calcs/caida-volt/caida-volt.html",
+      "destination": "/volt-calc/caida-volt/",
+      "permanent": true
+    },
+    {
+      "source": "/volt-calc/calcs/kw-amp/kw-amp.html",
+      "destination": "/volt-calc/kw-amp/",
+      "permanent": true
+    },
+    {
+      "source": "/volt-calc/calcs/caida-volt/caida-volt.html",
+      "destination": "/volt-calc/caida-volt/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/volt-calc/",
+      "destination": "/volt-calc/index.html"
+    },
+    {
+      "source": "/volt-calc/kw-amp/",
+      "destination": "/volt-calc/calcs/kw-amp/kw-amp.html"
+    },
+    {
+      "source": "/volt-calc/kw-amp/:path*",
+      "destination": "/volt-calc/calcs/kw-amp/:path*"
+    },
+    {
+      "source": "/volt-calc/caida-volt/",
+      "destination": "/volt-calc/calcs/caida-volt/caida-volt.html"
+    },
+    {
+      "source": "/volt-calc/caida-volt/:path*",
+      "destination": "/volt-calc/calcs/caida-volt/:path*"
+    }
+  ]
+}
