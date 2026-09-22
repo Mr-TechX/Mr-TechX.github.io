@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08070d" />
+    <title>Acceso VIP</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/ico" href="assets/yellow-rose-neon.png" />
+  </head>
+  <body>
+    <main id="private-content" class="site-shell private-content" hidden>
+      <section class="message-card private-message" aria-label="Mensaje para Mariana">
+        <span class="card-sparkle">✦</span>
+        <div>
+          <h1>PARA MARIANA</h1>
+          <p>Yo sé que no es lo mismo que un ramo real, pero estas durarán para siempre. La intención es lo que cuenta.<br> por si el que te gusta no se acordo jeje</p>
+        </div>
+        <span class="card-sparkle">✦</span>
+      </section>
+      <section class="garden" aria-label="Ramo de rosas amarillas para Mariana">
+        <div class="stars" aria-hidden="true"></div><div class="bouquet-glow" aria-hidden="true"></div>
+        <div id="bouquet" class="bouquet"></div>
+      </section>
+      <p id="status" class="status">Un detalle reservado para ti…</p>
+    </main>
+    <div id="vip-modal" class="login-overlay is-open" aria-hidden="false">
+      <section class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <span class="login-flower" aria-hidden="true">✦</span>
+        <p class="login-kicker">Acceso reservado</p>
+        <h1 id="login-title">Entrada VIP</h1>
+        <p class="login-copy">Hay un detalle esperando al otro lado.</p>
+        <form id="vip-form" novalidate>
+          <label for="vip-password">Contraseña</label>
+          <input id="vip-password" name="password" type="password" autocomplete="current-password" required autofocus />
+          <p id="login-error" class="login-error" role="alert"></p>
+          <button class="login-submit" type="submit">Descubrir el detalle ✦</button>
+        </form>
+      </section>
+    </div>
+    <script src="private-access.js"></script>
+  </body>
+</html>
